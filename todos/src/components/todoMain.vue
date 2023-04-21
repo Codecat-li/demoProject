@@ -15,14 +15,9 @@ import TodoItem from "./todoItem.vue";
 export default {
   name: "todoMain",
   components: { TodoItem },
+  props: ["todos"],
   data() {
-    return {
-      todos: [
-        { id: "001", title: "唱歌", completed: true },
-        { id: "002", title: "打游戏", completed: false },
-        { id: "003", title: "编程", completed: true },
-      ],
-    };
+    return {};
   },
 };
 </script>
