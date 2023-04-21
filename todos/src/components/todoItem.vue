@@ -2,7 +2,11 @@
   <div>
     <li>
       <label>
-        <input type="checkbox" :checked="todo.completed" />
+        <input
+          type="checkbox"
+          :checked="todo.completed"
+          @change="handleChecked(todo.id)"
+        />
         <span>{{ todo.title }}</span>
       </label>
       <button class="btn btn-danger" style="display: none">删除</button>
@@ -12,9 +16,14 @@
 <script>
 export default {
   name: "todoItem",
-  props: ["todo"],
+  props: ["todo", "checkTodo"],
   data() {
     return {};
+  },
+  methods: {
+    handleChecked(id) {
+      this.checkTodo(id);
+    },
   },
 };
 </script>

@@ -5,6 +5,7 @@
         v-for="todoitm in todos"
         :key="todoitm.id"
         :todo="todoitm"
+        :checkTodo="checkTodo"
       ></TodoItem>
     </ul>
   </div>
@@ -15,7 +16,7 @@ import TodoItem from "./todoItem.vue";
 export default {
   name: "todoMain",
   components: { TodoItem },
-  props: ["todos"],
+  props: ["todos", "checkTodo"],
   data() {
     return {};
   },

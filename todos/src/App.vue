@@ -3,7 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <todoHeader :addtodo="addtodo"></todoHeader>
-        <todoMain :todos="todos"></todoMain>
+        <todoMain :todos="todos" :checkTodo="checkTodo"></todoMain>
         <todoFooter></todoFooter>
       </div>
     </div>
@@ -23,6 +23,7 @@ export default {
   },
   data() {
     return {
+      // 将数据保存在最大的组件app中，可以传给所有子组件
       todos: [
         { id: "001", title: "唱歌", completed: true },
         { id: "002", title: "打游戏", completed: false },
@@ -30,10 +31,18 @@ export default {
       ],
     };
   },
+  // 子组件可以通过调用以下函数来联动其他组件
   methods: {
+    // 添加新todo对象
     addtodo(todoobj) {
       console.log("get todoobj:", todoobj);
       this.todos.unshift(todoobj);
+    },
+    // 勾选todo相关逻辑
+    checkTodo(id) {
+      this.todos.forEach((todo) => {
+        todo.id === id ? (todo.completed = !todo.completed) : "";
+      });
     },
   },
 };

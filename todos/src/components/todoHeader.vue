@@ -18,13 +18,16 @@ export default {
     return {};
   },
   methods: {
+    // 创建一个新的todo对象
     add(e) {
       const todoobj = {
         id: nanoid(),
         title: e.target.value,
         completed: false,
       };
+      // 调用app中的方法，和main组件联动
       this.addtodo(todoobj);
+      // 添加后输入框置空
       e.target.value = "";
     },
   },
