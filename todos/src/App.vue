@@ -8,7 +8,10 @@
           :checkTodo="checkTodo"
           :todoDelete="todoDelete"
         ></todoMain>
-        <todoFooter :todos="todos"></todoFooter>
+        <todoFooter
+          :todos="todos"
+          :checkedAlltodo="checkedAlltodo"
+        ></todoFooter>
       </div>
     </div>
   </div>
@@ -51,6 +54,9 @@ export default {
     // 删除按钮
     todoDelete(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id);
+    },
+    checkedAlltodo(done) {
+      this.todo.done = done;
     },
   },
 };

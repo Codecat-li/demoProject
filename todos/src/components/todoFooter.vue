@@ -1,11 +1,11 @@
 <template>
   <div>
-    <div class="todo-footer">
+    <div class="todo-footer" v-show="total">
       <label>
-        <input type="checkbox" />
+        <input type="checkbox" :checked="isAll" @change="checkedAll" />
       </label>
       <span>
-        <span>{{ doneTotal }}</span> / 全部{{ todos.length }}
+        <span>勾选{{ doneTotal }}</span> / 全部{{ total }}
       </span>
       <button class="btn btn-danger">清除已完成任务</button>
     </div>
@@ -14,7 +14,7 @@
 <script>
 export default {
   name: "todoFooter",
-  props: ["todos"],
+  props: ["todos", "checkedAlltodo"],
   data() {
     return {};
   },
@@ -22,6 +22,19 @@ export default {
     //  计算todo的勾选个数，rudece会遍历并累加done的值。
     doneTotal() {
       return this.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0);
+    },
+    // 计算动态数组长度
+    total() {
+      return this.todos.length;
+    },
+    // 计算是否全选
+    isAll() {
+      return this.doneTotal === this.total && this.total > 0;
+    },
+  },
+  methods: {
+    checkedAll(e) {
+      this.checkedAlltodo(e.target.checked);
     },
   },
 };
