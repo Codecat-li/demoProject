@@ -2,7 +2,8 @@
   <div>
     <div class="todo-footer" v-show="total">
       <label>
-        <input type="checkbox" :checked="isAll" @change="checkedAll" />
+        <input type="checkbox" v-model="isAll" />
+        <!-- <input type="checkbox" :checked="isAll" @change="checkedAll" /> -->
       </label>
       <span>
         <span>勾选{{ doneTotal }}</span> / 全部{{ total }}
@@ -28,14 +29,20 @@ export default {
       return this.todos.length;
     },
     // 计算是否全选
-    isAll() {
-      return this.doneTotal === this.total && this.total > 0;
+    isAl: {
+      // 通过完整版计算属性绑定v-model可以省区操作dom获取选中状态
+      get() {
+        return this.doneTotal === this.total && this.total > 0;
+      },
+      set(value) {
+        this.checkedAlltodo(value);
+      },
     },
-  },
-  methods: {
-    checkedAll(e) {
-      this.checkedAlltodo(e.target.checked);
-    },
+    // methods: {
+    //   checkedAll(e) {
+    //     this.checkedAlltodo(e.target.checked);
+    //   },
+    // },
   },
 };
 </script>
