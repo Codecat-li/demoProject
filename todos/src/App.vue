@@ -3,7 +3,11 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <todoHeader :addtodo="addtodo"></todoHeader>
-        <todoMain :todos="todos" :checkTodo="checkTodo"></todoMain>
+        <todoMain
+          :todos="todos"
+          :checkTodo="checkTodo"
+          :todoDelete="todoDelete"
+        ></todoMain>
         <todoFooter></todoFooter>
       </div>
     </div>
@@ -43,6 +47,10 @@ export default {
       this.todos.forEach((todo) => {
         todo.id === id ? (todo.completed = !todo.completed) : "";
       });
+    },
+    // 删除按钮
+    todoDelete(id) {
+      this.todos = this.todos.filter((todo) => todo.id !== id);
     },
   },
 };

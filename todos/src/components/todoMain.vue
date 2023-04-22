@@ -6,6 +6,7 @@
         :key="todoitm.id"
         :todo="todoitm"
         :checkTodo="checkTodo"
+        :todoDelete="todoDelete"
       ></TodoItem>
     </ul>
   </div>
@@ -16,7 +17,7 @@ import TodoItem from "./todoItem.vue";
 export default {
   name: "todoMain",
   components: { TodoItem },
-  props: ["todos", "checkTodo"],
+  props: ["todos", "checkTodo", "todoDelete"],
   data() {
     return {};
   },

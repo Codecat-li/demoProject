@@ -10,20 +10,30 @@
         />
         <span>{{ todo.title }}</span>
       </label>
-      <button class="btn btn-danger" style="display: none">删除</button>
+      <button class="btn btn-danger" @click="handleDelete(todo.id)">
+        删除
+      </button>
     </li>
   </div>
 </template>
 <script>
 export default {
   name: "todoItem",
-  props: ["todo", "checkTodo"],
+  props: ["todo", "checkTodo", "todoDelete"],
   data() {
     return {};
   },
   methods: {
+    // 勾选功能
     handleChecked(id) {
       this.checkTodo(id);
+    },
+    // 删除功能
+    handleDelete(id) {
+      if (confirm("确定删除吗？")) {
+        console.log("id");
+        this.todoDelete(id);
+      }
     },
   },
 };
@@ -62,5 +72,13 @@ li:before {
 
 li:last-child {
   border-bottom: none;
+}
+
+li:hover {
+  background-color: #ddd;
+}
+
+li:hover button {
+  display: block;
 }
 </style>
