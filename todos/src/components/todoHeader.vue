@@ -23,7 +23,7 @@ export default {
       const todoobj = {
         id: nanoid(),
         title: e.target.value,
-        completed: false,
+        done: false,
       };
       // 调用app中的方法，和main组件联动
       this.addtodo(todoobj);

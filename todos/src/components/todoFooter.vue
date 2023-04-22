@@ -4,7 +4,9 @@
       <label>
         <input type="checkbox" />
       </label>
-      <span> <span>已完成0</span> / 全部2 </span>
+      <span>
+        <span>{{ doneTotal }}</span> / 全部{{ todos.length }}
+      </span>
       <button class="btn btn-danger">清除已完成任务</button>
     </div>
   </div>
@@ -12,8 +14,15 @@
 <script>
 export default {
   name: "todoFooter",
+  props: ["todos"],
   data() {
     return {};
+  },
+  computed: {
+    //  计算todo的勾选个数，rudece会遍历并累加done的值。
+    doneTotal() {
+      return this.todos.reduce((pre, todo) => pre + (todo.done ? 1 : 0), 0);
+    },
   },
 };
 </script>

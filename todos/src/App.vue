@@ -8,7 +8,7 @@
           :checkTodo="checkTodo"
           :todoDelete="todoDelete"
         ></todoMain>
-        <todoFooter></todoFooter>
+        <todoFooter :todos="todos"></todoFooter>
       </div>
     </div>
   </div>
@@ -29,9 +29,9 @@ export default {
     return {
       // 将数据保存在最大的组件app中，可以传给所有子组件
       todos: [
-        { id: "001", title: "唱歌", completed: true },
-        { id: "002", title: "打游戏", completed: false },
-        { id: "003", title: "编程", completed: true },
+        { id: "001", title: "唱歌", done: true },
+        { id: "002", title: "打游戏", done: false },
+        { id: "003", title: "编程", done: true },
       ],
     };
   },
@@ -45,7 +45,7 @@ export default {
     // 勾选todo相关逻辑
     checkTodo(id) {
       this.todos.forEach((todo) => {
-        todo.id === id ? (todo.completed = !todo.completed) : "";
+        todo.id === id ? (todo.done = !todo.done) : "";
       });
     },
     // 删除按钮
@@ -64,11 +64,6 @@ export default {
   text-align: center;
   color: #2c3e50;
   margin-top: 60px;
-}
-
-/*base*/
-body {
-  background: #fff;
 }
 
 .btn {
@@ -98,6 +93,11 @@ body {
 
 .btn:focus {
   outline: none;
+}
+
+/*base*/
+body {
+  background: #fff;
 }
 
 .todo-container {

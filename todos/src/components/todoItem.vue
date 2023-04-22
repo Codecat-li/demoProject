@@ -5,7 +5,7 @@
         <!-- 此处还可以去掉checked和handleChecked改用v-model，但是违反了props只读规则，在改变绑定对象结构的情况下可能会出错 -->
         <input
           type="checkbox"
-          :checked="todo.completed"
+          :checked="todo.done"
           @change="handleChecked(todo.id)"
         />
         <span>{{ todo.title }}</span>
