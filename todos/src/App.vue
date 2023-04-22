@@ -11,6 +11,7 @@
         <todoFooter
           :todos="todos"
           :checkedAlltodo="checkedAlltodo"
+          :clearAllTodo="clearAllTodo"
         ></todoFooter>
       </div>
     </div>
@@ -55,8 +56,13 @@ export default {
     todoDelete(id) {
       this.todos = this.todos.filter((todo) => todo.id !== id);
     },
+    // 让所有的todo.done都等于done的布尔值
     checkedAlltodo(done) {
       this.todo.done = done;
+    },
+    // 清除掉所有的false
+    clearAllTodo() {
+      this.todos = this.todos.filter((todo) => !todo.done);
     },
   },
 };

@@ -8,14 +8,14 @@
       <span>
         <span>勾选{{ doneTotal }}</span> / 全部{{ total }}
       </span>
-      <button class="btn btn-danger">清除已完成任务</button>
+      <button class="btn btn-danger" @click="clearAll">清除已完成任务</button>
     </div>
   </div>
 </template>
 <script>
 export default {
   name: "todoFooter",
-  props: ["todos", "checkedAlltodo"],
+  props: ["todos", "checkedAlltodo", "clearAllTodo"],
   data() {
     return {};
   },
@@ -29,7 +29,7 @@ export default {
       return this.todos.length;
     },
     // 计算是否全选
-    isAl: {
+    isAll: {
       // 通过完整版计算属性绑定v-model可以省区操作dom获取选中状态
       get() {
         return this.doneTotal === this.total && this.total > 0;
@@ -38,11 +38,14 @@ export default {
         this.checkedAlltodo(value);
       },
     },
-    // methods: {
+  },
+  methods: {
     //   checkedAll(e) {
     //     this.checkedAlltodo(e.target.checked);
     //   },
-    // },
+    clearAll() {
+      this.clearAllTodo();
+    },
   },
 };
 </script>
