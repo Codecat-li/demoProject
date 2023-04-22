@@ -15,7 +15,7 @@
 <script>
 export default {
   name: "todoFooter",
-  props: ["todos", "checkedAlltodo", "clearAllTodo"],
+  props: ["todos"],
   data() {
     return {};
   },
@@ -34,8 +34,9 @@ export default {
       get() {
         return this.doneTotal === this.total && this.total > 0;
       },
+      // isAll被修改时会被调用
       set(value) {
-        this.checkedAlltodo(value);
+        this.$emit("checkedAlltodo", value);
       },
     },
   },
@@ -44,7 +45,7 @@ export default {
     //     this.checkedAlltodo(e.target.checked);
     //   },
     clearAll() {
-      this.clearAllTodo();
+      this.$emit("clearAllTodo");
     },
   },
 };

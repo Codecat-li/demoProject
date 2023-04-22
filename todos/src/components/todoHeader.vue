@@ -13,7 +13,6 @@
 import { nanoid } from "nanoid";
 export default {
   name: "todoHeader",
-  props: ["addtodo"],
   data() {
     return {};
   },
@@ -26,7 +25,7 @@ export default {
         done: false,
       };
       // 调用app中的方法，和main组件联动
-      this.addtodo(todoobj);
+      this.$emit("addtodo", todoobj);
       // 添加后输入框置空
       e.target.value = "";
     },
