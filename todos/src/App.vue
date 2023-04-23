@@ -3,11 +3,7 @@
     <div class="todo-container">
       <div class="todo-wrap">
         <todoHeader @addtodo="addtodo"></todoHeader>
-        <todoMain
-          :todos="todos"
-          :checkTodo="checkTodo"
-          :todoDelete="todoDelete"
-        ></todoMain>
+        <todoMain :todos="todos"></todoMain>
         <todoFooter
           :todos="todos"
           @checkedAlltodo="checkedAlltodo"
@@ -64,6 +60,14 @@ export default {
     clearAllTodo() {
       this.todos = this.todos.filter((todo) => !todo.done);
     },
+  },
+  mounted() {
+    this.$bus.$on("checkTodo", this.checkTodo);
+    this.$bus.$on("todoDelete", this.todoDelete);
+  },
+  beforeDestroy() {
+    this.$bus.$off("checkTodo");
+    this.$bus.$off("todoDelete");
   },
 };
 </script>

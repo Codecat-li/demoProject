@@ -7,4 +7,8 @@ Vue.config.productionTip = false;
 new Vue({
   store,
   render: (h) => h(App),
+  beforeCreate() {
+    // 添加全局总线
+    Vue.prototype.$bus = this;
+  },
 }).$mount("#app");

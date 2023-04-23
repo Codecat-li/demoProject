@@ -19,20 +19,20 @@
 <script>
 export default {
   name: "todoItem",
-  props: ["todo", "checkTodo", "todoDelete"],
+  props: ["todo"],
   data() {
     return {};
   },
   methods: {
     // 勾选功能
     handleChecked(id) {
-      this.checkTodo(id);
+      this.$bus.$emit("checkTodo", id);
     },
     // 删除功能
     handleDelete(id) {
       if (confirm("确定删除吗？")) {
         console.log("id");
-        this.todoDelete(id);
+        this.$bus.$emit("todoDelete", id);
       }
     },
   },
