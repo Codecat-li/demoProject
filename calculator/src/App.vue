@@ -1,18 +1,18 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
+    <MyCount></MyCount>
   </div>
 </template>
 
 <script>
-import HelloWorld from "./components/HelloWorld.vue";
+import MyCount from "./components/MyCount.vue";
 
 export default {
   name: "App",
   components: {
-    HelloWorld,
+    MyCount,
   },
+  mounted() {},
 };
 </script>
 
