@@ -5,6 +5,12 @@ Vue.use(Vuex);
 
 const state = {
   sum: 0,
+  personList: [
+    {
+      id: "001",
+      name: "张三",
+    },
+  ],
 };
 
 const actions = {
@@ -28,6 +34,9 @@ const mutations = {
   },
   DEC(state, value) {
     state.sum -= value;
+  },
+  AddPerson(state, value) {
+    state.personList.unshift(value);
   },
 };
 //将state中的数据进行加工
