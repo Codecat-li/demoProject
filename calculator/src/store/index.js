@@ -8,13 +8,7 @@ const state = {
 };
 
 const actions = {
-  add(conxtext, value) {
-    console.log("add被调用了", conxtext, value);
-    conxtext.commit("Add", value);
-  },
-  dec(conxtext, value) {
-    conxtext.commit("DEC", value);
-  },
+  // 业务逻辑写这里
   addOdd(conxtext, value) {
     if (conxtext.state.sum % 2) {
       conxtext.commit("Add", value);
@@ -28,6 +22,7 @@ const actions = {
 };
 
 const mutations = {
+  // 数据加工写这里
   Add(state, value) {
     state.sum += value;
   },

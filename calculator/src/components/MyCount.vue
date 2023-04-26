@@ -23,11 +23,13 @@ export default {
   },
   methods: {
     incerment() {
-      this.$store.dispatch("add", this.number);
+      // 没有业务逻辑直接commit和mutations对话
+      this.$store.commit("Add", this.number);
     },
     decerment() {
-      this.$store.dispatch("dec", this.number);
+      this.$store.commit("DEC", this.number);
     },
+    // 有业务逻辑dispatch()和actions对话
     incermentOdd() {
       this.$store.dispatch("addOdd", this.number);
     },
