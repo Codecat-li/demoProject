@@ -1,11 +1,13 @@
 <template>
   <div>
     <h1>人员列表</h1>
-    <h3>下方求和为{{ sum }}</h3>
+    <h3>下方求和为{{ contOptins.sum }}</h3>
     <input type="text" placeholder="请输入名字" v-model="Pname" />
     <button @click="addPerson">添加</button>
     <ul>
-      <li v-for="p in personList" :key="p.id">{{ p.name }}</li>
+      <li v-for="p in personOptins.personList.length" :key="p.id">
+        {{ p.name }}
+      </li>
     </ul>
   </div>
 </template>
@@ -27,7 +29,7 @@ export default {
     },
   },
   computed: {
-    ...mapState(["personList", "sum"]),
+    ...mapState(["contOptins", "personOptins"]),
   },
 };
 </script>

@@ -3,52 +3,61 @@ import Vuex from "vuex";
 
 Vue.use(Vuex);
 
-const state = {
-  sum: 0,
-  personList: [
-    {
-      id: "001",
-      name: "张三",
+const countOptins = {
+  namespaced: true,
+  state: {
+    sum: 0,
+  },
+  getters: {
+    bigSum(state) {
+      return state.sum * 10;
     },
-  ],
+  },
+  actions: {
+    // 业务逻辑写这里
+    addOdd(conxtext, value) {
+      if (conxtext.state.sum % 2) {
+        conxtext.commit("Add", value);
+      }
+    },
+    addWait(conxtext, value) {
+      setTimeout(() => {
+        conxtext.commit("Add", value);
+      }, 500);
+    },
+  },
+  mutations: {
+    Add(state, value) {
+      state.sum += value;
+    },
+    DEC(state, value) {
+      state.sum -= value;
+    },
+  },
 };
 
-const actions = {
-  // 业务逻辑写这里
-  addOdd(conxtext, value) {
-    if (conxtext.state.sum % 2) {
-      conxtext.commit("Add", value);
-    }
+const personOptins = {
+  namespaced: true,
+  state: {
+    personList: [
+      {
+        id: "001",
+        name: "张三",
+      },
+    ],
   },
-  addWait(conxtext, value) {
-    setTimeout(() => {
-      conxtext.commit("Add", value);
-    }, 500);
+  getters: {},
+  actions: {},
+  mutations: {
+    AddPerson(state, value) {
+      state.personList.unshift(value);
+    },
   },
 };
 
-const mutations = {
-  // 数据加工写这里
-  Add(state, value) {
-    state.sum += value;
-  },
-  DEC(state, value) {
-    state.sum -= value;
-  },
-  AddPerson(state, value) {
-    state.personList.unshift(value);
-  },
-};
-//将state中的数据进行加工
-const getters = {
-  bigSum() {
-    return state.sum * 10;
-  },
-};
 export default new Vuex.Store({
-  state,
-  getters,
-  actions,
-  mutations,
-  modules: {},
+  modules: {
+    countOptins: countOptins,
+    personOptins: personOptins,
+  },
 });

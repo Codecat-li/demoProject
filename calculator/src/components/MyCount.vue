@@ -1,7 +1,7 @@
 <template>
   <div class="hello">
     <h1>当前求和为：{{ sum }}</h1>
-    <h3>当前求和为：{{ bigSum }}</h3>
+    <h3>当前求和十倍为：{{ bigSum }}</h3>
     <h3>下方总人数：{{ personList.length }}</h3>
     <select v-model.number="number">
       <option value="1">1</option>
@@ -26,16 +26,18 @@ export default {
     };
   },
   methods: {
-    ...mapMutations({ incerment: "Add", decerment: "DEC" }),
+    ...mapMutations("countOptins", { incerment: "Add", decerment: "DEC" }),
     // 有业务逻辑dispatch()和actions对话
-    ...mapActions({ incermentOdd: "addOdd", incermentWait: "addWait" }),
+    ...mapActions("countOptins", {
+      incermentOdd: "addOdd",
+      incermentWait: "addWait",
+    }),
   },
   computed: {
-    // 对象写法，map+State，从state中取数据
-    // ...mapState({ sum: "sum" }),
-    //数组写法
-    ...mapState(["sum", "personList"]),
-    ...mapGetters(["bigSum"]),
+    // 导入对应模块
+    ...mapState("countOptins", ["sum"]),
+    ...mapState("personOptins", ["personList"]),
+    ...mapGetters("countOptins", ["bigSum"]),
   },
 };
 </script>
