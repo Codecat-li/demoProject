@@ -8,12 +8,12 @@
 
 <script>
 import MyCount from "./components/MyCount.vue";
-// import MyPerson from "./components/MyPerson.vue";
+import MyPerson from "./components/MyPerson.vue";
 export default {
   name: "App",
   components: {
     MyCount,
-    // MyPerson,
+    MyPerson,
   },
   mounted() {},
 };

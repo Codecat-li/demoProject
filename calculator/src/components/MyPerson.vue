@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1>人员列表</h1>
-    <h3>下方求和为{{ contOptins.sum }}</h3>
-    <input type="text" placeholder="请输入名字" v-model="Pname" />
+    <h3>下方求和为{{ sum }}</h3>
+    <input type="text" placeholder="请输入名字" v-model="name" />
     <button @click="addPerson">添加</button>
     <ul>
-      <li v-for="p in personOptins.personList.length" :key="p.id">
+      <li v-for="p in personList" :key="p.id">
         {{ p.name }}
       </li>
     </ul>
@@ -18,19 +18,20 @@ export default {
   name: "MyPerson",
   data() {
     return {
-      Pname: "",
+      name: "",
     };
   },
   methods: {
     addPerson() {
-      const PersonObj = { id: nanoid(), name: this.Pname };
-      this.$store.commit("AddPerson", PersonObj);
-      this.Pname = "";
+      console.log(this.personList);
+      const PersonObj = { id: nanoid(), name: this.name };
+      this.$store.commit("personOptins/AddPerson", PersonObj);
+      this.name = "";
     },
   },
   computed: {
-    ...mapState(["contOptins", "personOptins"]),
+    ...mapState("countOptins", ["sum"]),
+    ...mapState("personOptins", ["personList"]),
   },
 };
 </script>
-<style lang="less" scoped></style>
