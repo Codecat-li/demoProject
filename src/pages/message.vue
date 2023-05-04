@@ -2,17 +2,18 @@
   <div>
     <ul>
       <li v-for="mes in   messageList  " :key="mes.id">
-        <!-- to的字符串写法 -->
-        <!-- <router-link :to="`/Home/message/detail?id=${mes.id}&title=${mes.title}`">
+        <!-- params写法 -->
+        <!-- <router-link :to="`/Home/message/detail/${mes.id}/${mes.title}`">
           {{ mes.title }}
         </router-link> -->
         <!-- to的对象写法 -->
         <router-link :to="{
-          path: '/Home/message/detail',
+          name: 'detail',
           query: { id: mes.id, title: mes.title }
         }">
           {{ mes.title }}
         </router-link>
+
       </li>
     </ul>
     <hr>

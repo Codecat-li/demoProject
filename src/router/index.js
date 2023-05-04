@@ -15,8 +15,20 @@ export default new VueRouter({
         component: message,
         children: [
           {
-            path: "detail",
+            name: "detail",
+            path: "detail/:id/:title",
             component: detail,
+            // 固定参数，对象中的所有参数都会以props形式传给detail组件
+            // props: { a: 1, b: 'hello' }
+            // 若为true,会把所有收到的params以props形式传给detail组件
+            // props: true
+            // 回调函数写法,适用query
+            props($router) {
+              return {
+                id: $router.query.id,
+                title: $router.query.title
+              }
+            }
           },
         ]
       },
