@@ -3,7 +3,6 @@
     <ul>
       <li>消息编号：{{ id }}</li>
       <li>消息标题：{{ title }}</li>
-
     </ul>
   </div>
 </template>
@@ -15,9 +14,6 @@ export default {
     return {
     }
   },
-  mounted() {
-    console.log(this.$route);
-  }
 }
 </script>
 <style lang="less" scoped></style>

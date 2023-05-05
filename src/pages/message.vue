@@ -13,7 +13,8 @@
         }">
           {{ mes.title }}
         </router-link>
-
+        <button @click="pushShow(mes)">push查看</button>
+        <button @click="replaceShow(mes)">replace查看</button>
       </li>
     </ul>
     <hr>
@@ -33,6 +34,20 @@ export default {
       ]
     }
   },
+  methods: {
+    pushShow(mes) {
+      this.$router.push({
+        name: 'detail',
+        query: { id: mes.id, title: mes.title }
+      })
+    },
+    replaceShow(mes) {
+      this.$router.replace({
+        name: 'detail',
+        query: { id: mes.id, title: mes.title }
+      })
+    }
+  }
 }
 </script>
 <style lang="less" scoped></style>
