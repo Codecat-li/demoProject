@@ -9,7 +9,9 @@
         <router-link class="list-group-item" active-class="active" to="/Home/message">Message</router-link>
       </li>
     </ul>
-    <router-view></router-view>
+    <keep-alive include="news">
+      <router-view></router-view>
+    </keep-alive>
   </div>
 </template>
 <script>
