@@ -21,6 +21,10 @@ export default {
   data() {
     return {};
   },
+  // // 通过路由规则进入该组件时调用
+  // beforeRouteEnter(to, from, next) { },
+  // // 通过路由规则离开该组件时调用
+  // beforeRouteLeave(to, from, next) { },
 };
 </script>
 <style lang="less" scoped></style>
