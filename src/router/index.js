@@ -5,42 +5,71 @@ import message from "@/pages/message.vue";
 import news from "@/pages/news.vue";
 import detail from "@/pages/detail.vue";
 
-export default new VueRouter({
+const router = new VueRouter({
   routes: [{
     path: "/Home",
     component: Home,
+    meta: { title: "主页" },
+    //     beforeEnter: (to, from,next)=> {
+    //   if (to.meta.isAuth === true) {
+    //     if (localStorage.getItem('school') === 'qinchuan') { next() }
+    //     else {
+    //       alert('该学校无权限')
+    //     }
+    //   }
+    //   else {
+    //     next()
+    //   }
+    // },
     children: [
       {
         path: "message",
         component: message,
+        meta: { isAuth: true, title: "消息" },
         children: [
           {
             name: "detail",
             path: "detail/:id/:title",
+            meta: { isAuth: true, title: "信息" },
             component: detail,
-            // 固定参数，对象中的所有参数都会以props形式传给detail组件
-            // props: { a: 1, b: 'hello' }
-            // 若为true,会把所有收到的params以props形式传给detail组件
-            // props: true
-            // 回调函数写法,适用query
             props($router) {
               return {
                 id: $router.query.id,
                 title: $router.query.title
               }
-            }
+            },
           },
         ]
       },
       {
         path: "news",
         component: news,
+        meta: { isAuth: true, title: "新闻" }
       }
     ]
   },
   {
     path: "/About",
-    component: About
+    component: About,
+    meta: { title: "关于" },
   },
   ]
 })
+// 前置路由守卫，切换路由时触发。
+router.beforeEach((to, from, next) => {
+
+  if (to.meta.isAuth === true) {
+    if (localStorage.getItem('school') === 'qinchuan') { next() }
+    else {
+      alert('该学校无权限')
+    }
+  }
+  else {
+    next()
+  }
+})
+// 后置路由守卫，切换路由时触发
+router.afterEach((to) => {
+  document.title = to.meta.title
+})
+export default router;
