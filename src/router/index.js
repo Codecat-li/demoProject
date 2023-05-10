@@ -6,7 +6,7 @@ import news from "@/pages/news.vue";
 import detail from "@/pages/detail.vue";
 
 const router = new VueRouter({
-  mode:"history",
+  mode: "history",
   routes: [{
     path: "/Home",
     component: Home,
